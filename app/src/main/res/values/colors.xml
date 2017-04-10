@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#003666</color>
+    <color name="colorPrimaryDark">#012a50</color>
+    <color name="colorAccent">#c2c2c2</color>
+    <color name="fondoIconLogin">#76abdc</color>
+    <color name="fondButton">#55abde</color>
+</resources>

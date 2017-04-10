@@ -1,0 +1,62 @@
+<resources>
+    <!-- Tittel -->
+    <string name="app_name">Mini Market</string>
+    <!-- Login -->
+    <string name="txtUser">Usuario</string>
+    <string name="txtPassWord">Contraseña</string>
+    <string name="txtBtnLogin">Ingresar</string>
+    <!-- Registro -->
+    <string name="txtRegister">Registrar</string>
+    <string name="txtTittleRegiter">REGISTRO</string>
+    <string name="txtNombre">Nombre</string>
+    <string name="txtApellido">Apellido</string>
+    <string name="txtCorreo">Correo</string>
+    <string name="txtTelefono">Telefono o celular</string>
+    <string name="txtBtnRegistrate">Registrate</string>
+    <!-- Inicion User -->
+    <string name="miUbicacion">Mi Ubicación</string>
+    <string name="verUbicacion">Ver Ubicación</string>
+    <!-- Action Bar -->
+    <string name="title_activity_index_user">Mini Market</string>
+    <string name="icon_perfil">Perfil</string>
+    <string name="drawer_opened">Opened</string>
+    <string name="drawer_closed">Closed</string>
+    <!-- Menu lateral -->
+    <string name="lateral_user">Usuario</string>
+    <string name="lateral_metodo">Métodos de pago</string>
+    <string name="lateras_tus_compras">Tus compras</string>
+    <string name="tiendas_cercanas">Tiendas Cercanas</string>
+    <string name="lateral_tienda_cercana">Tienda más cercanas</string>
+    <string name="lateral_acerca_de">Acerca De</string>
+    <string name="title_activity_central">Mini Market</string>
+    <!--Metodos de pago -->
+    <string name="btn_add_metodo_pago">Agregar Método de pago</string>
+    <string name="btn_add_comprobante_pago">Agregar Comprobante de pago</string>
+    <string name="tv_comprobante">Comprobante de pago</string>
+    <string name="boleta">Boleta</string>
+    <string name="factura">Factura</string>
+    <!-- Comprobante -->
+    <string name="seleccionar_comprobante">Seleccionar Comprobante de Pago</string>
+    <!-- Editar Perfil -->
+    <string name="editar_perfil">Editar Perfil</string>
+    <string name="btn_modificar">Modificar</string>
+    <string name="btn_mi_ubicacion">Mi Ubicación</string>
+    <string name="btn_verUbicaion">Ver Ubicación</string>
+    <!-- Acerca De -->
+    <string name="acerca">Esta aplicación es creada por Alexis David Pumayalla Giove para presentacion de un proyecto.</string>
+    <string name="DNI">DNI</string>
+    <string name="txtDireccion">Dirección</string>
+    <string name="Solicitar">Solicitar</string>
+    <string name="seleccione_accion">Seleccione accion</string>
+    <string name="txtrazon">Razon Social</string>
+    <string name="Ruc">RUC</string>
+    <string name="btnVisualizar">VIsualizar</string>
+    <string name="txtPrecio">Precio</string>
+    <string name="txtCantidad">Cantidad</string>
+    <!-- Mapa -->
+    <string name="key">AIzaSyAYkLCk-o3rRqkuqKiItHHuErzHJoml8Mg</string>
+    <string name="btn_verMapa">Ver Mapa</string>
+    <string name="icon_Carrito">Pre Venta</string>
+    <string name="btnAgregar">Agregar</string>
+
+</resources>

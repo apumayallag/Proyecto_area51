@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/factura"
+        android:gravity="center"
+        android:textSize="@dimen/titulos"
+        android:textColor="@android:color/black"
+        android:paddingBottom="@dimen/activity_vertical_margin"/>
+
+    <EditText
+        android:id="@+id/etComprobRazon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txtrazon"
+        android:inputType="textCapSentences" />
+
+    <EditText
+        android:id="@+id/etComprobRUC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/Ruc"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/etComprobDireccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txtDireccion"
+        android:inputType="textCapSentences" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btnAgregarBoleta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:text="@string/btn_add_comprobante_pago" />
+    </FrameLayout>
+
+</LinearLayout>
