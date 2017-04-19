@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="pe.area51.proyectoandroid.PerfilActivity">
+    tools:context="pe.area51.proyecto.PerfilActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,17 +41,24 @@
                     android:layout_weight="50"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/txtNombre" />
-
-                    <EditText
-                        android:id="@+id/etPerfilnombre"
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/etRegisNombre_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textCapSentences"
-                        android:text="@string/txtNombre" />
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:textColorHint="@android:color/black">
+
+                        <EditText
+                            android:id="@+id/etPerfilnombre"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/txtNombre"
+                            android:inputType="textCapSentences"
+                            android:textColorHint="@android:color/black" />
+
+                    </android.support.design.widget.TextInputLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -61,45 +68,55 @@
                     android:orientation="vertical"
                     android:paddingLeft="@dimen/activity_horizontal_margin">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/txtApellido" />
-
-                    <EditText
-                        android:id="@+id/etPerfilApellido"
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/titPerfilApe"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textCapSentences"
-                        android:text="@string/txtApellido" />
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:textColorHint="@android:color/black">
+
+                        <EditText
+                            android:id="@+id/etPerfilApellido"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/txtApellido"
+                            android:inputType="textCapSentences" />
+                    </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/espaciado_perfil"
-                android:text="@string/txtTelefono" />
-
-            <EditText
-                android:id="@+id/etPerfilTelefono"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/titPerfilApTelfe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:text="@string/txtTelefono" />
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:textColorHint="@android:color/black">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/espaciado_perfil"
-                android:text="@string/txtCorreo" />
+                <EditText
+                    android:id="@+id/etPerfilTelefono"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/txtTelefono"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/etPerfilCorreo"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/titPerfilEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:text="@string/txtCorreo" />
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:textColorHint="@android:color/black">
+
+                <EditText
+                    android:id="@+id/etPerfilCorreo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/txtCorreo"
+                    android:inputType="textEmailAddress" />
+            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <Button
