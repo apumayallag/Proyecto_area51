@@ -140,7 +140,6 @@ public class ProductoActivity extends AppCompatActivity {
                             dialog.dismiss();
                         } else {
                             etCantidad.setError("Ingrese cantidad");
-
                         }
                     }
                 });

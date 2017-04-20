@@ -12,24 +12,28 @@
         android:id="@+id/txtProduct"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="30" />
+        android:layout_weight="30"
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/txtPrecioUnit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="10" />
+        android:layout_weight="10"
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/txtCant"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="10" />
+        android:layout_weight="10"
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/txtPrecioTotal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="15" />
+        android:layout_weight="15"
+        android:gravity="right" />
 
 </LinearLayout>

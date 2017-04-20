@@ -38,8 +38,7 @@ public class ManagerOpenHelper extends SQLiteOpenHelper {
         db.execSQL("insert into tb_producto_tienda (id_tienda, producto, precio) values('3', 'Bolsa de Rafia', '3')");
         db.execSQL("insert into tb_producto_tienda (id_tienda, producto, precio) values('3', 'Bolsa de Plastico', '4')");
         db.execSQL("create table tb_pre_venta (id integer primary key autoincrement,id_detalle varchar(100), tienda varchar(100), producto varchar(100), precio_unit varchar(100), cant integer(100), precio_total varchar(100))");
-        db.execSQL("insert into tb_pre_venta (id_detalle, tienda, producto, precio_unit, cant, precio_total) values('1', 'Tienda02', 'Paquete de Leche', '10', '5', '60')");
-        //db.execSQL("create table tb_venta (id integer primary key autoincrement, id_preventa integer(100), id_tienda varchar(100), total_pago varchar(100)");
+        db.execSQL("create table tb_venta (id integer primary key autoincrement,id_preventa varchar(100), id_tienda varchar(100), total_pago varchar(100))");
     }
 
     @Override

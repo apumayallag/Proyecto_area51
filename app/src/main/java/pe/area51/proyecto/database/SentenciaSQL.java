@@ -7,15 +7,13 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
+import pe.area51.proyecto.modelosbd.ComboComprobante;
 import pe.area51.proyecto.modelosbd.DatosComprobante;
 import pe.area51.proyecto.modelosbd.DatosLogin;
 import pe.area51.proyecto.modelosbd.DatosPreventa;
 import pe.area51.proyecto.modelosbd.DatosProducto;
 import pe.area51.proyecto.modelosbd.DatosTienda;
-
-/**
- * Created by User on 14/03/2017.
- */
+import pe.area51.proyecto.modelosbd.DatosVenta;
 
 public class SentenciaSQL {
     private ManagerOpenHelper conexion;
@@ -333,7 +331,7 @@ public class SentenciaSQL {
 
     public String obtenerTiendaconId(String id) {
         SQLiteDatabase db = conexion.getReadableDatabase();
-        Cursor cursor = db.query("tb_pre_venta", null, " id=?", new String[]{id}, null, null, null);
+        Cursor cursor = db.query("tb_pre_venta", null, " id_detalle=?", new String[]{id}, null, null, null);
         if (cursor.getCount() < 1) // UserName Not Exist
         {
             cursor.close();
@@ -357,5 +355,127 @@ public class SentenciaSQL {
             } while (cursor.moveToNext());
         }
         return null;
+    }
+
+    public void registrarVenta(String id_preventa, String id_tienda, String total_pago) {
+        //Asignamos el permiso de escritura a la base de datos
+        SQLiteDatabase db = conexion.getWritableDatabase();
+        //Creamos las variables con los parametros que vamos a registrar
+        ContentValues contentValues = new ContentValues();
+        //Agregamos los datos que vasmoa a guardar
+        contentValues.put("id_preventa", id_preventa);
+        contentValues.put("id_tienda", id_tienda);
+        contentValues.put("total_pago", total_pago);
+        //Registrar los datos a nuestra base de datos
+        db.insert("tb_venta", null, contentValues);
+    }
+
+    public ArrayList<DatosPreventa> listarPreVentaporID(String id_pre) {
+        //asignamos permiso de solo lectura
+        SQLiteDatabase db = conexion.getReadableDatabase();
+        //Creamos nuestra sentencia SQL
+        Cursor cursor = db.rawQuery("select * from tb_pre_venta where id_detalle="+"'"+id_pre+"'", null);
+        //Creamos una lista de tipo Datos
+        ArrayList<DatosPreventa> lista = new ArrayList<>();
+        //Ejecutamos para verificar si es que hay registros
+        if (cursor.moveToFirst()) {
+            do {
+                //Creamos un objeto donde se almacenaran los datos
+                DatosPreventa datos = new DatosPreventa();
+                //Setteamos todos los datos
+                datos.setProducto(cursor.getString(cursor.getColumnIndex("producto")));
+                datos.setPrecio_uni(cursor.getString(cursor.getColumnIndex("precio_unit")));
+                datos.setCant(cursor.getInt(cursor.getColumnIndex("cant")));
+                datos.setPrecio_tot(cursor.getString(cursor.getColumnIndex("precio_total")));
+                //Añadimos los datos a la lista
+                lista.add(datos);
+                //Recorre el bucle siempre y cuando haya registros
+            } while (cursor.moveToNext());
+        }
+        return lista;
+    }
+
+    public ArrayList<DatosVenta> ListarVentas() {
+        //asignamos permiso de solo lectura
+        SQLiteDatabase db = conexion.getReadableDatabase();
+        //Creamos nuestra sentencia SQL
+        Cursor cursor = db.rawQuery("select * from tb_venta", null);
+        //Creamos una lista de tipo Datos
+        ArrayList<DatosVenta> lista = new ArrayList<>();
+        //Ejecutamos para verificar si es que hay registros
+        if (cursor.moveToFirst()) {
+            do {
+                //Creamos un objeto donde se almacenaran los datos
+                DatosVenta datos = new DatosVenta();
+                //Setteamos todos los datos
+                datos.setId_tienda(cursor.getString(cursor.getColumnIndex("id_tienda")));
+                datos.setId_preventa(cursor.getString(cursor.getColumnIndex("id_preventa")));
+                datos.setTotal_pago(cursor.getString(cursor.getColumnIndex("total_pago")));
+                //Añadimos los datos a la lista
+                lista.add(datos);
+                //Recorre el bucle siempre y cuando haya registros
+            } while (cursor.moveToNext());
+        }
+        return lista;
+    }
+
+    public ArrayList<ComboComprobante> obtenerComprobporUser(int id_user) {
+        SQLiteDatabase db = conexion.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from tb_comprobante where id_user ="+id_user, null);
+        ArrayList<ComboComprobante> lista = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                lista.add(new ComboComprobante(cursor.getString(cursor.getColumnIndex("tipo")), cursor.getString(cursor.getColumnIndex("razon"))));
+            } while (cursor.moveToNext());
+        }
+        return lista;
+    }
+
+    public DatosComprobante obtenerComprobanteporRazon(String razon) {
+        SQLiteDatabase db = conexion.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from tb_comprobante where razon ="+"'"+ razon+"'", null);
+        if (cursor.moveToFirst()) {
+            do {
+                DatosComprobante datos = new DatosComprobante();
+                datos.setTipo(cursor.getString(cursor.getColumnIndex("tipo")));
+                datos.setDniRuc(cursor.getString(cursor.getColumnIndex("doc_ident")));
+                datos.setDirec(cursor.getString(cursor.getColumnIndex("direc")));
+                return datos;
+            } while (cursor.moveToNext());
+        }
+        return null;
+    }
+
+    public String obtenerIdconRazon(String razon) {
+        SQLiteDatabase db = conexion.getReadableDatabase();
+        Cursor cursor = db.query("tb_comprobante", null, " razon=?", new String[]{razon}, null, null, null);
+        if (cursor.getCount() < 1) // UserName Not Exist
+        {
+            cursor.close();
+            return "No Existe";
+        }
+        cursor.moveToFirst();
+        String password = cursor.getString(cursor.getColumnIndex("id_comprobante"));
+        cursor.close();
+        return password;
+    }
+
+    public void actualizarcomprobante(String razon, String direc, String DniRuc, int id) {
+        //Asignamos el permiso de escritura a la base de datos
+        SQLiteDatabase db = conexion.getWritableDatabase();
+        //Creamos las variables con los parametros a registrar
+        ContentValues contentValues = new ContentValues();
+        //Validamos que traiga algun dato
+        if (!razon.equals("")) {
+            contentValues.put("razon", razon);
+        }
+        if (!direc.equals("")) {
+            contentValues.put("direc", direc);
+        }
+        if (!DniRuc.equals("")) {
+            contentValues.put("doc_ident", DniRuc);
+        }
+        //acutaliczamos toda la base de datos
+        db.update("tb_comprobante", contentValues, "id_comprobante=" + id, null);
     }
 }

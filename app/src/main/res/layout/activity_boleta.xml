@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_app"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -11,32 +12,59 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/boleta"
         android:gravity="center"
-        android:textSize="@dimen/titulos"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:text="@string/boleta"
         android:textColor="@android:color/black"
-        android:paddingBottom="@dimen/activity_vertical_margin"/>
+        android:textSize="@dimen/titulos" />
 
-    <EditText
-        android:id="@+id/etComprobNombre"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/etRegisBoleta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/txtNombre"
-        android:inputType="textCapSentences" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textColorHint="@android:color/black">
 
-    <EditText
-        android:id="@+id/etComprobDNI"
+        <EditText
+            android:id="@+id/etComprobNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/txtNombre"
+            android:inputType="textCapSentences" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/etRegisDni"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/DNI"
-        android:inputType="number" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textColorHint="@android:color/black">
 
-    <EditText
-        android:id="@+id/etComprobDireccion"
+        <EditText
+            android:id="@+id/etComprobDNI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/DNI"
+            android:inputType="number" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/etRegisDirec"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/txtDireccion"
-        android:inputType="textCapSentences" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textColorHint="@android:color/black">
+
+        <EditText
+            android:id="@+id/etComprobDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/txtDireccion"
+            android:inputType="textCapSentences" />
+    </android.support.design.widget.TextInputLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -47,8 +75,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|bottom"
-            android:paddingTop="@dimen/activity_vertical_margin"
+            android:alpha="0.7"
             android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
             android:text="@string/btn_add_comprobante_pago" />
     </FrameLayout>
 

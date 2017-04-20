@@ -21,6 +21,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pe.area51.proyecto.database.SentenciaSQL;
+import pe.area51.proyecto.modelosbd.ComboComprobante;
+import pe.area51.proyecto.modelosbd.DatosComprobante;
 import pe.area51.proyecto.modelosbd.DatosLogin;
 
 public class ComprobanteActivity extends AppCompatActivity {
@@ -29,6 +31,8 @@ public class ComprobanteActivity extends AppCompatActivity {
     Spinner SpComprobante;
     private int id;
     private SentenciaSQL sentenciaSQL = new SentenciaSQL(ComprobanteActivity.this);
+
+    ArrayList<ComboComprobante> spdatos = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,7 @@ public class ComprobanteActivity extends AppCompatActivity {
         }
 
         id = getIntent().getIntExtra("id", -1);
+
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -59,7 +64,7 @@ public class ComprobanteActivity extends AppCompatActivity {
         builder.setPositiveButton("Boleta", (new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(ComprobanteActivity.this,BoletaActivity.class);
+                Intent intent = new Intent(ComprobanteActivity.this, BoletaActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
             }
@@ -67,7 +72,7 @@ public class ComprobanteActivity extends AppCompatActivity {
         builder.setNegativeButton("Factura", (new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Intent intent = new Intent(ComprobanteActivity.this,FacturaActivity.class);
+                Intent intent = new Intent(ComprobanteActivity.this, FacturaActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
             }
@@ -84,34 +89,52 @@ public class ComprobanteActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ArrayList<String> datos = new ArrayList<>();
 
         final SentenciaSQL sentenciaSQL = new SentenciaSQL(ComprobanteActivity.this);
-        datos = sentenciaSQL.obtenerComprobantePorUsuario(id);
-        ArrayAdapter arrayAdapter = new ArrayAdapter(ComprobanteActivity.this, R.layout.support_simple_spinner_dropdown_item, datos);
+
+        spdatos.clear();
+        spdatos = sentenciaSQL.obtenerComprobporUser(id);
+        ArrayList<String> Datos = new ArrayList<>();
+        for (ComboComprobante item : spdatos) {
+            Datos.add(item.getTexto());
+        }
+        ArrayAdapter arrayAdapter = new ArrayAdapter(ComprobanteActivity.this, R.layout.support_simple_spinner_dropdown_item, Datos);
         SpComprobante.setAdapter(arrayAdapter);
 
         SpComprobante.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, final int position, long l) {
                 if (position != 0) {
-                    final String text=SpComprobante.getSelectedItem().toString();
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(ComprobanteActivity.this);
-                    builder.setTitle(getResources().getString(R.string.seleccione_accion));
-                    builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+                    String datoSp = adapterView.getItemAtPosition(position).toString();
+                    Toast.makeText(ComprobanteActivity.this, "" + datoSp, Toast.LENGTH_SHORT).show();
+                    final DatosComprobante datosComprobante = sentenciaSQL.obtenerComprobanteporRazon(datoSp);
+
+                    final Dialog dialog = new Dialog(ComprobanteActivity.this);
+                    dialog.setContentView(R.layout.item_vista_boleta);
+                    dialog.setTitle(datosComprobante.getTipo());
+
+                    final EditText Boleta = (EditText) dialog.findViewById(R.id.etBoletaVista);
+                    final EditText Dnia = (EditText) dialog.findViewById(R.id.etDniVista);
+                    final EditText Direc = (EditText) dialog.findViewById(R.id.etDirecVista);
+                    Dnia.setText(datosComprobante.getDniRuc());
+                    Direc.setText(datosComprobante.getDirec());
+
+                    Boleta.setText(datoSp);
+                    final int id = Integer.parseInt(sentenciaSQL.obtenerIdconRazon(datoSp));
+
+                    Button btnModificar = (Button) dialog.findViewById(R.id.btnModificar);
+
+                    btnModificar.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
+                        public void onClick(View v) {
+                            sentenciaSQL.actualizarcomprobante(Boleta.getText().toString(), Direc.getText().toString(), Dnia.getText().toString(),id);
+                            finish();
+                            Toast.makeText(ComprobanteActivity.this, "Se actualizo correctamente", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
                         }
                     });
-                    builder.setNegativeButton("Eliminar", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            sentenciaSQL.eliminarComprobante(position);
-                            Toast.makeText(ComprobanteActivity.this, "Se elimino correctamente", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.create().show();
+
+                    dialog.show();
                 }
             }
 

@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#003666</color>
     <color name="colorPrimaryDark">#012a50</color>
-    <color name="colorAccent">#c2c2c2</color>
+    <color name="colorAccent">#6e6e6e</color>
     <color name="fondoIconLogin">#76abdc</color>
     <color name="fondButton">#55abde</color>
 </resources>

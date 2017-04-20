@@ -45,7 +45,8 @@
             android:value="@string/key" />
 
         <activity android:name=".MapaActivity" />
-        <activity android:name=".PreVentaActivity"></activity>
+        <activity android:name=".PreVentaActivity" />
+        <activity android:name=".DetalleVentaActivity"></activity>
     </application>
 
 </manifest>

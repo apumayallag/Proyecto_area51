@@ -58,5 +58,11 @@
     <string name="btn_verMapa">Ver Mapa</string>
     <string name="icon_Carrito">Pre Venta</string>
     <string name="btnAgregar">Agregar</string>
+    <string name="txtProducto">Producto</string>
+    <string name="txtPrecioUnid">c/u S/.</string>
+    <string name="PreciTot">Total</string>
+    <string name="TotalPrecio">Total: S/.</string>
+    <string name="txtRePassWord">Repite Contraseña</string>
+    <string name="btnSeleccionar">Seleccionar</string>
 
 </resources>
